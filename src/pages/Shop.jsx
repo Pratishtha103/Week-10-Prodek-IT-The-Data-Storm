@@ -1,13 +1,19 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import { addToCart } from '../features/cart/cartSlice';
+
+import  FilterSidebar  from "../components/FilterSidebar";
+
+import {Filter, X} from 'lucide-react';
 
 function Shop(){
     const [products,setProducts]=useState([]);
     const [loading, setLoading] = useState(true);
+
+    const [showFilters, setShowFilters] = useState(false); //for sidebar
 
     const dispatch = useDispatch();
     useEffect(()=>{
@@ -21,16 +27,68 @@ function Shop(){
         .catch((e)=>console.error(e))
     },[]);
     
-    function productDetails(id){
+    const filters = useSelector(
+        state=>state.filters
+    );
 
-    }
+    const filteredProducts = useMemo(() => {
+
+        return products.filter(product => {
+
+            const matchesCategory =
+                filters.category === "all" ||
+                product.category === filters.category;
+
+            const matchesPrice =
+                product.price <= filters.maxPrice;
+
+            return (
+                matchesCategory &&
+                matchesPrice
+            );
+        });
+
+    }, [products, filters]);
     return(
         <div className="p-6">
-            <div className="grid grid-cols-3 gap-6 items-center justify-items-center p-2">
+            <button
+                onClick={() =>
+                    setShowFilters(true)
+                }
+            >
+                <Filter/>
+            </button>
+            {showFilters && (
+                    <div
+                        className="fixed 
+                        top-0 left-0
+                        h-full w-72
+                        backdrop-blur-md
+                        bg-white/10
+                        border
+                        border-white/20
+                        shadow-lg
+                        z-50 p-4"
+                    >
+
+                        <button
+                            onClick={() =>
+                                setShowFilters(false)
+                            }
+                            className=" mb-4 p-2 rounded"
+                        >
+                            <X/>
+                        </button>
+
+                        <FilterSidebar />
+                    </div>
+                )
+            }
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center justify-items-center p-2 ">
                 {loading?(
                     <p className="p-6">Loading Products...</p>
                 ):(
-                    products.map((product) => (
+                    filteredProducts.map((product) => (
                     <Link to={`/product/${product.id}`} key={product.id}>
                         <div key={product.id} className="w-74 border-2 rounded-lg p-2">
                             <img src={product.thumbnail} alt={product.title}/>

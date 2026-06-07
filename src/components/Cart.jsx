@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeFromCart } from "../features/cart/cartSlice";
+import { Trash2 } from "lucide-react";
 
 export default function Cart(){
     const cartItems = useSelector(
@@ -12,16 +13,17 @@ export default function Cart(){
                 flex-col 
                 items-center 
                 gap-2">
-            {
+            {cartItems.length?(
             cartItems.map(product=>(
                 <div key={product.id}
                 className="
                     flex flex-row
                     p-3
-                    w-200
                     justify-between
-                    bg-[#222]
+                    items-center
+                    border
                     rounded-lg
+                    w-full
                 "
                     >
                     <div>
@@ -32,24 +34,25 @@ export default function Cart(){
                     
                     <button 
                         className="
-                         bg-red-600
-                         text-white 
-                         hover:bg-[#333] 
-                         hover:text-red-600
-                         border-2 
+                        text-red-600
                          rounded-lg 
-                         h-10 w-40 
-                         p-2 
+                         h-10
                          cursor-pointer"
                         onClick={()=>
                             dispatch(removeFromCart(product.id))
                         }
                         >
-                        Remove
+                        <Trash2/>
                     </button>
                 </div>
             ))
-        }
+        ):(
+            <div className="text-center">
+                <h2 className="text-xl">Your cart is empty.</h2>
+
+                <p className="text-sm text-gray-500">Add an item to view cart.</p>
+            </div>
+        )}
         </div>
     );
 }

@@ -1,7 +1,7 @@
-## Mission 6: Shop Zone (Single Page Application)
+# Week 10: Shop Zone and Redux Toolkit + react-redux
 
-Level: 1
+Phase: 3
 
-Website: https://mission6-prodesk-it-the-shop.vercel.app/
+Live Website Link: 
 
 ![Website](Website.png)
