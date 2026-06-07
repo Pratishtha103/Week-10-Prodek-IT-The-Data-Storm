@@ -16,7 +16,7 @@ function Contact(){
                 <input className="border-2 rounded-lg h-15 w-100 p-2" type="text" placeholder="Your Name" name="name"/>
                 <input className="border-2 rounded-lg h-15 w-100 p-2" type="text" placeholder="Your Email" name="email"/>
                 <textarea className="border-2 rounded-lg h-30 w-100 p-2" name="comments" id="comments" placeholder="Your Comments"></textarea>
-                <button className=" bg-white text-[#333] hover:bg-[#333] hover:text-white border-2 rounded-lg h-10 w-40 p-2" type="submit">Send</button>
+                <button className=" bg-white text-[#333] hover:bg-[#333] hover:text-white border-2 rounded-lg h-10 w-40 p-2 cursor-pointer" type="submit">Send</button>
             </form>
         </div>
     )
