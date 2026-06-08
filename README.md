@@ -1,4 +1,6 @@
-# Week 10: Shop Zone and Redux Toolkit + react-redux
+# Week 10: The Data Storm 
+
+E-commerece Shop Zone and Redux Toolkit + react-redux
 
 Phase: 3
 
