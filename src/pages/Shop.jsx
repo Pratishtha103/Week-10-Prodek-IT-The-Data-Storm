@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 import {useDispatch, useSelector} from 'react-redux';
-
+import { setMaxPrice } from "../features/filters/filterSlice";
 import { addToCart } from '../features/cart/cartSlice';
 
 import  FilterSidebar  from "../components/FilterSidebar";
@@ -49,6 +49,22 @@ function Shop(){
         });
 
     }, [products, filters]);
+    // products in a category
+    const categoryProducts =
+        filters.category === "all"
+            ? products
+            : products.filter(
+                product =>
+                    product.category === filters.category
+            );
+    // highest price of products in a category
+    const highestPrice = products.length > 0
+        ? Math.max(...categoryProducts.map(product => product.price))
+        : 1000;
+    // update max price in initial state
+    useEffect(() => {
+        dispatch(setMaxPrice(highestPrice));
+    }, [highestPrice, dispatch]);
     return(
         <div className="p-6">
             <button
@@ -79,8 +95,8 @@ function Shop(){
                         >
                             <X/>
                         </button>
-
-                        <FilterSidebar />
+                        {/* sending the highest price to update filter */}
+                        <FilterSidebar highestPrice = {highestPrice}/>
                     </div>
                 )
             }

@@ -7,7 +7,7 @@ import {
     resetFilters
 } from "../features/filters/filterSlice";
 
-export default function FilterSidebar(){
+export default function FilterSidebar({highestPrice}){
     const filters = useSelector(
         state => state.filters
     );
@@ -39,7 +39,7 @@ export default function FilterSidebar(){
                     <input
                         type="range"
                         min="0"
-                        max="10000"
+                        max={highestPrice}
                         value={filters.maxPrice}
                         onChange={(e) =>
                             dispatch(setMaxPrice(Number(e.target.value)))
@@ -48,7 +48,7 @@ export default function FilterSidebar(){
                     />
                 <div className="flex justify-between">
                     <span>$0</span>
-                    <span>$10000</span>
+                    <span>${highestPrice}</span>
                 </div>
                 <button
                 onClick={()=>

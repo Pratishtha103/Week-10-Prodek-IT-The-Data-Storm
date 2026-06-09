@@ -192,4 +192,9 @@ return(
 
 "blurred background className"
 
-""
+"calculating max price of the product to update in filters, is prop mandatory? shop and filter are seperate components"
+
+"I think there should be a maxprice for every category, but is that overdoing it? my data is dummy and has a category of different products, most of them are low price just the furnitures are high"
+
+"state synchronization"
+

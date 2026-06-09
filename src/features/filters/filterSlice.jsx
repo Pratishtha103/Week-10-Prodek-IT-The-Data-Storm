@@ -17,7 +17,9 @@ const filterSlice = createSlice({
         setMaxPrice: (state, action)=>{
             state.maxPrice = action.payload;
         },
-        resetFilters: () => initialState,
+        resetFilters: (state) =>{ 
+            state.category = "all"; // resets category alone, price rest is handled via dispatch
+        },
     },
 });
 
