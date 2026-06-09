@@ -90,7 +90,7 @@ function Shop(){
                 ):(
                     filteredProducts.map((product) => (
                     <Link to={`/product/${product.id}`} key={product.id}>
-                        <div key={product.id} className="w-74 border-2 rounded-lg p-2">
+                        <div className="w-74 border-2 rounded-lg p-2">
                             <img src={product.thumbnail} alt={product.title}/>
                             <p>{product.title}</p>
                             <p className="text-amber-400 font-bold">${product.price}</p>
