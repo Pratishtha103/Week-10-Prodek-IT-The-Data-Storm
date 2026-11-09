@@ -29,15 +29,25 @@ Deployment: Vercel
 ## 📁 Project Architecture
 
 ├── public/              # Static assets & images
+
 ├── src/
+
 │   ├── app/ or pages/   # Routing and page views
+
 │   ├── components/      # Reusable UI components (Navbar, CartModal, ProductCard, FilterBar)
+
 │   ├── redux/ or store/ # Redux store configuration
+
 │   │   ├── store.js     # Root store configuration
+
 │   │   └── slices/      # Redux slices (cartSlice, productSlice)
+
 │   ├── styles/          # Global styles & Tailwind configuration
+
 │   └── utils/           # Helper functions & formatters
+
 ├── package.json
+
 └── README.md
 
 
